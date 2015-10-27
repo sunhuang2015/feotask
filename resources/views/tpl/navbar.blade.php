@@ -41,10 +41,10 @@
                 <!-- #section:basics/navbar.user_menu -->
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" />
+                        <img class="nav-user-photo" src="/assets/avatars/user.jpg" alt="" />
 								<span class="user-info">
-									<small>Welcome,</small>
-									Jason
+									<small>{{ config('site.welcome') }},</small>
+									{!! Auth::user() !!}
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>

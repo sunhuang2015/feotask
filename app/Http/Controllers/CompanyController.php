@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Company;
 class CompanyController extends Controller
 {
     /**
@@ -16,6 +16,9 @@ class CompanyController extends Controller
     public function index()
     {
         //
+        $companies=Company::all();
+        $breadcrumbs=config('site.company');
+        return view('company.index',compact('companies'));
     }
 
     /**
