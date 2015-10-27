@@ -197,5 +197,6 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="feotask node_modules" level="project" />
   </component>
 </module>

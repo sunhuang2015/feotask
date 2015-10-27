@@ -17,6 +17,6 @@ Route::get('/', function () {
 
 //Define Route
 
-
+Route::get('company',['as'=>'company','uses'=>'CompanyController@index']);
 
 //Define Authorized Group
