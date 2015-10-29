@@ -17,7 +17,7 @@ class CdmaApplyController extends Controller
     public function index()
     {
         //
-        $cdmas=CdmaApply::with(['company','CdmaStatus'])->get();
+        $cdmas=CdmaApply::with(['company','CdmaStatus'])->orderBy('created_at','DESC')->get();
         return view('cdma.apply.index',compact('cdmas'));
     }
 
@@ -37,7 +37,7 @@ class CdmaApplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CdmaApplyRequest $request)
     {
         //
         $data=$request->except(['_token','attachment']);
@@ -83,8 +83,15 @@ class CdmaApplyController extends Controller
     public function edit($id)
     {
         //
+
         $cdma=CdmaApply::find($id);
-        return view('cdma.apply.edit',compact('cdma'));
+        if($cdma->cdma_status_id<=2){
+            return view('cdma.apply.edit',compact('cdma'));
+        }
+        else{
+            return back()->with('message','已经完成<br>无法更新');
+        }
+
     }
 
     /**

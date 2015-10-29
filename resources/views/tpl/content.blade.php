@@ -22,8 +22,8 @@
             <div class="row">
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
-                  @include('tpl.alert')
-
+                    @include('tpl.alert')
+                    @include('tpl.error')
              <div class="row">
                  @yield('content')
              </div>
