@@ -12,7 +12,7 @@ class EmployeeLevelTableSeeder extends Seeder
     public function run()
     {
         //
-         DB::table('employee_levels')->truncate();
+         DB::table('employee_levels')->delete();
                  DB::table('employee_levels')->insert([
                      ['name'=>'25级','credit'=>'88'],
                      ['name'=>'26级','credit'=>'400'],

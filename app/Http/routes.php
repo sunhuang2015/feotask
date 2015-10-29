@@ -28,3 +28,6 @@ Route::get('department',['as'=>'departmennt','uses'=>'DepartmentController@index
 Route::resource('department','DepartmentController');
 Route::post('/upload/department','UploadController@department');
 //Define Authorized Group
+
+Route::get('cdma/apply',['as'=>'cdma.apply','uses'=>'CdmaApplyController@index']);
+Route::resource('cdma/apply','CdmaApplyController');
