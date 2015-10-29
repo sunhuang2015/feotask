@@ -135,9 +135,9 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="/mobile/CDMA">
+                    <a href="/cdma/apply">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        CDMA管理
+                        CDMA申请
                     </a>
 
                     <b class="arrow"></b>

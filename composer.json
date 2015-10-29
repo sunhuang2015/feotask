@@ -9,7 +9,9 @@
         "laravel/framework": "5.1.*",
         "laravelcollective/html": "v5.1.6",
         "maatwebsite/excel": "2.0.8",
-        "felixkiss/uniquewith-validator": "2.*"
+        "felixkiss/uniquewith-validator": "2.*",
+        "overtrue/laravel-lang": "dev-master",
+        "caouecs/laravel4-lang": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
