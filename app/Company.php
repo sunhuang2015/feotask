@@ -10,7 +10,7 @@ class Company extends Model
     //
     
    use SoftDeletes;
-    protected $fillable=['name','code','remark'];
+    protected $fillable=['name','code','remark','description'];
     protected $table='companies';
 
     public function department(){

@@ -15,5 +15,17 @@ return [
     'footer'=>'Application &copy; 2015-2016',
     'company'=>'公司',
     'name'=>'名字',
-    'code'=>'代码'
+    'code'=>'代码',
+    'id'=>'编号',
+    'edit'=>'编辑',
+    'new'=>'新增',
+    'update'=>'更新',
+    'delete'=>'删除',
+    'action'=>'操作',
+    'description'=>'描述',
+    'confirm-delete'=>'请确认是否删除数据',
+    'confirm'=>'请确认',
+    'close'=>'关闭',
+    'yes'=>'是',
+    'save'=>'保存'
 ];

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Company;
+use App\Department;
 class UploadController extends Controller
 {
     /**
@@ -13,74 +16,73 @@ class UploadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+   /*
+    *   Department Upload
+    *
+    *
+    */
+
+    public function department(Request $request){
+        if($request->hasFile('attachment')){
+            $date=Carbon::now()->format("Y_m_d");
+            $path=base_path()."/up/"."Department/".$date."/";
+            $ext=$request->file('attachment')->getClientOriginalExtension();
+            $extmine=$request->file('attachment')->getClientMimeType();
+            $exts=collect([
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+
+            ]);
+            if($exts->contains($extmine)){
+                $request->file('attachment')->move($path,Carbon::now()->timestamp.".".$ext);
+                $filename=$path.Carbon::now()->timestamp.".".$ext;
+                $messages=$this->importDept($filename);
+
+            }else{
+                return back()->with('message','文件格式不对');
+            }
+
+
+        }
+        return back()->with('messages',$messages);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function importDept($destfile){
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $this->count['dept->success']=0;
+        $this->count['dept->failed']=0;
+        Excel::load($destfile,function($reader){
+            $rules=[
+                'name'=>'required|unique_with:departments,company_id,costcent',
+                'company_id'=>'required|exists:companies,id',
+                'costcent'=>'required'
+            ];
+            $sheetsCount=$reader->getSheetCount();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+            for($i=0;$i<$sheetsCount;$i++){
+                $sheets=$reader->getSheet($i)->toArray();
+                $company_name=$reader->getSheet($i)->getTitle();
+                $dept['company_id']=Company::where('name',$company_name)->value('id');
+                $sheetCount=count($sheets);
+                for($j=6;$j<$sheetCount;$j++){
+                    $dept['name']=trim($sheets[$j][1]);
+                    $dept['costcent']=trim($sheets[$j][10]);
+                    $dept['description']=$dept['name'];
+                    $dept_v=\Validator::make($dept,$rules);
+                    if($dept_v->passes()){
+                        Department::create($dept);
+                        $this->count['dept->success']+=1;
+                    }else{
+                        $this->count['dept->failed']+=1;
+                    }
+                }
+            }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+
+            //END
+        });
+        return $this->count;
     }
 }

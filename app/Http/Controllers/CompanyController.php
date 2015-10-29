@@ -16,7 +16,7 @@ class CompanyController extends Controller
     public function index()
     {
         //
-        $companies=Company::all();
+        $companies=Company::withTrashed()->get();
         $breadcrumbs=config('site.company');
         return view('company.index',compact('companies'));
     }
@@ -51,6 +51,8 @@ class CompanyController extends Controller
     public function show($id)
     {
         //
+        $company=Company::find($id);
+        return view('company.edit')->with('company',$company);
     }
 
     /**
@@ -62,6 +64,8 @@ class CompanyController extends Controller
     public function edit($id)
     {
         //
+        $company=Company::find($id);
+        return view('company.edit')->with('company',$company);
     }
 
     /**
@@ -74,6 +78,11 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $company=Company::find($id);
+        $data=$request->except(['_token','_method']);
+        //dd($data);
+        $company->update($data);
+        return redirect()->to('company');
     }
 
     /**
@@ -85,5 +94,7 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         //
+        Company::destroy($id);
+        return redirect()->to('company');
     }
 }

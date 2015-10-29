@@ -147,6 +147,8 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
+        Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider::class,
     ],
 
     /*

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Department;
 class DepartmentController extends Controller
 {
     /**
@@ -16,6 +16,8 @@ class DepartmentController extends Controller
     public function index()
     {
         //
+        $departments=Department::all();
+        return view('department.index',compact('departments'));
     }
 
     /**
@@ -37,6 +39,9 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         //
+        $data=$request->except('_token');
+        Department::create($data);
+        return back();
     }
 
     /**

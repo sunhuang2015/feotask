@@ -16,7 +16,15 @@ Route::get('/', function () {
 });
 
 //Define Route
-
+/*
+ * Company Route
+ */
 Route::get('company',['as'=>'company','uses'=>'CompanyController@index']);
-
+Route::resource('company','CompanyController');
+/*
+ * Department route
+ */
+Route::get('department',['as'=>'departmennt','uses'=>'DepartmentController@index']);
+Route::resource('department','DepartmentController');
+Route::post('/upload/department','UploadController@department');
 //Define Authorized Group

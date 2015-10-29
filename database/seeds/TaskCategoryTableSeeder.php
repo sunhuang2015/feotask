@@ -12,7 +12,7 @@ class TaskCategoryTableSeeder extends Seeder
     public function run()
     {
         //
-         DB::table('task_categories')->truncate();
+         DB::table('task_categories')->delete();
                  DB::table('task_categories')->insert([
                      ['name'=>'Network'],
 

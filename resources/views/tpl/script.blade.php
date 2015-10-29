@@ -29,7 +29,10 @@
 <script src="/assets/js/flot/jquery.flot.js"></script>
 <script src="/assets/js/flot/jquery.flot.pie.js"></script>
 <script src="/assets/js/flot/jquery.flot.resize.js"></script>
-
+<script src="/assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="/assets/js/dataTables/jquery.dataTables.bootstrap.js"></script>
+<script src="/assets/js/dataTables/extensions/TableTools/js/dataTables.tableTools.js"></script>
+<script src="/assets/js/dataTables/extensions/ColVis/js/dataTables.colVis.js"></script
 <!-- ace scripts -->
 <script src="/assets/js/ace/elements.scroller.js"></script>
 <script src="/assets/js/ace/elements.colorpicker.js"></script>
