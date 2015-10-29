@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\CdmaApply;
+use App\CdmaApplyLog;
 class CdmaApplyController extends Controller
 {
     /**
@@ -39,11 +40,26 @@ class CdmaApplyController extends Controller
     public function store(Request $request)
     {
         //
-        $data=$request->except('_token');
-        $data['cdma_status_id']=1;
-        CdmaApply::create($data);
+        $data=$request->except(['_token','attachment']);
+        $data['attachment']="";
+        if($request->hasFile('attachment')){
 
-        return back();
+            $path=base_path('up/')."cdma/apply";
+            $ext=$request->file('attachment')->getClientOriginalExtension();
+            $filename=$request->get('employee_number').".".$ext;
+            $request->file('attachment')->move($path,$filename);
+            $data['attachment']=$path.$filename;
+        }
+        $data['cdma_status_id']=1;
+
+        $cdmas=CdmaApply::create($data);
+        $log=   ['cdma_apply_id'=>$cdmas->id,
+            'cdma_status_id'=>$data['cdma_status_id'],
+            'attachment'=>$data['attachment']
+        ];
+        CdmaApplyLog::create($log);
+
+       return back();
 
     }
 
@@ -82,8 +98,23 @@ class CdmaApplyController extends Controller
     {
         //
         $cdma=CdmaApply::find($id);
-        $data=$request->except(['_token','_method']);
+        $data=$request->except(['_token','_method','attachment']);
+        $data['attachment']="";
+        if($request->hasFile('attachment')){
+
+            $path=base_path('up/')."cdma/apply";
+            $ext=$request->file('attachment')->getClientOriginalExtension();
+            $filename=$request->get('employee_number')."_".$data['cdma_status_id'].".".$ext;
+            $request->file('attachment')->move($path,$filename);
+            $data['attachment']=$path.$filename;
+        }
+
         $cdma->update($data);
+        $log=   ['cdma_apply_id'=>$id,
+            'cdma_status_id'=>$data['cdma_status_id'],
+            'attachment'=>$data['attachment']
+        ];
+        CdmaApplyLog::create($log);
         return redirect()->to('cdma/apply');
     }
 
