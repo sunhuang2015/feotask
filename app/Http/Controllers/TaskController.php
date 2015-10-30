@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Task;
-
+use Carbon\Carbon;
 class TaskController extends Controller
 {
     /**
@@ -18,7 +18,7 @@ class TaskController extends Controller
     {
         //
 
-        $tasks=Task::orderBy('created_at','DESC')->get();
+        $tasks=Task::with(['company','step'])->orderBy('created_at','DESC')->get();
 
         return view('task.index',compact('tasks'));
 
@@ -40,9 +40,27 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\TaskCreateRequest $request)
     {
         //
+        if($request->hasFile('attachment')){
+            $data=$request->except(['_token','attachment']);
+            $date=Carbon::now()->format("Y_m_d");
+            $path=base_path()."/up/"."TASK/".$date."/";
+            $ext=$request->file('attachment')->getClientOriginalExtension();
+            $request->file('attachment')->move($path,Carbon::now()->timestamp.".".$ext);
+            $filename=$path.Carbon::now()->timestamp.".".$ext;
+            $data['attachment']=$filename;
+            $data['step_id']=1;
+            $data['status_id']=1;
+            //dd($data);
+            $task=Task::create($data);
+
+            return back();
+
+        }
+
+
     }
 
     /**
@@ -65,6 +83,9 @@ class TaskController extends Controller
     public function edit($id)
     {
         //
+        $task=Task::find($id);
+
+        return view('task.edit',compact('task'));
     }
 
     /**

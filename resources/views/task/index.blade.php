@@ -50,7 +50,6 @@
                                     <input type="text" name="costcent" value="" class="form-control">
                                 </div>
                             </div>
-
                             <div class="form-group ">
                                 <label for="" class="col-sm-2 control-label">SNC号码</label>
 
@@ -64,34 +63,25 @@
 
 
                         </div>
-
                             <div class="form-group ">
                                <label for="" class="col-sm-2 control-label">Subject</label>
                                <div class="col-xs-10">
                                   <input type="text" name="subject" value="" class="form-control">
                                </div>
                             </div>
-
-
-
                             <div class="form-group ">
                                <label for="" class="col-sm-2 control-label">Reason</label>
                                <div class="col-xs-10">
                                   <input type="text" name="reason" value="" class="form-control">
                                </div>
                             </div>
-
-                            <div class="form-group has-warning">
+                            <div class="form-group ">
                                <label for="" class="col-sm-2 control-label">Attachment</label>
                                <div class="col-xs-4">
                                   {!! Form::file('attachment',['class'=>'form-control']) !!}
                                </div>
                             </div>
-
-
-                                                        </div>
-                            
-                         </div>
+                        </div>
 
                     </div>
                 </div>
@@ -110,10 +100,10 @@
             <table id="task_apply_table" class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th>姓名</th>
-                    <th> 工号</th>
-                    <th> 公司</th>
-                    <th>部门</th>
+                    <th>名称</th>
+                    <th>项目</th>
+                    <th>公司</th>
+                    <th>成本中心</th>
                     <th>申请时间</th>
                     <th>状态</th>
                     <th>{{config('site.action')}}</th>
@@ -124,15 +114,16 @@
                     @foreach($tasks as $task)
                      <tr>
 
-                         <td>{{$task->employee_name}}</td>
-                         <td>{{$task->employee_number}}</td><td class="hidden-480">{{$task->company->name}}</td>
-                         <td>{{$task->department_name}}</td>
+                         <td>{{$task->name}}</td>
+                         <td>{{$task->subject}}</td>
+                         <td>{{$task->company->name}}</td>
+                         <td>{{$task->costcent}}</td>
                          <td>{{$task->created_at}}</td>
-                         <td>{{$task->taskStatus->name}}</td>
+                         <td>{{$task->step->name}}</td>
                          <td>
                         <div class="hidden-sm hidden-xs btn-group">
                             <button class="btn btn-xs btn-success">
-                                <a href="/task/apply/{{$task->id}}/edit"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+                                <a href="/task/{{$task->id}}/edit"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
                             </button>
 
 
