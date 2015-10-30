@@ -144,9 +144,9 @@
                 </li>
 
                 <li class="">
-                    <a href="/mobile/">
+                    <a href="/cdma/manager">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Form Elements 2
+                        CDMA列表
                     </a>
 
                     <b class="arrow"></b>

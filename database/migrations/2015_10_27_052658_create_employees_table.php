@@ -22,11 +22,15 @@ class CreateEmployeesTable extends Migration
             $table->string('costcent')->nullable();
             $table->integer('category_id')->unsigned();
             $table->integer('status_id')->unsigned();
+            $table->string('bank_info')->nullable();
+            $table->string('bank_account')->unqiue();
+            $table->integer('level_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('employee_categories')->onDelete('cascade');
             $table->foreign('status_id')->references('id')->on('employee_statuses')->onDelete('cascade');
+            $table->foreign('level_id')->references('id')->on('employee_levels')->onDelete('cascade');
         });
     }
 

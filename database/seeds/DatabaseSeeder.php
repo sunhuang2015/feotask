@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call(UserTableSeeder::class);
+        $this->call(EmployeeStatusTableSeeder::class);
+
         $this->call(EmployeeLevelTableSeeder::class);
         $this->call(TaskStepTableSeeder::class);
         $this->call(CompanyTableSeeder::class);
@@ -23,6 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PhoneCategoryTableSeeder::class);
 
         $this->call(CdmaStatusTableSeeder::class);
+
+        $this->call(EmployeeCategoryTableSeeder::class);
         Model::reguard();
     }
 }

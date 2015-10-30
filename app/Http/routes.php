@@ -31,3 +31,12 @@ Route::post('/upload/department','UploadController@department');
 
 Route::get('cdma/apply',['as'=>'cdma.apply','uses'=>'CdmaApplyController@index']);
 Route::resource('cdma/apply','CdmaApplyController');
+
+Route::resource('cdma/manager','CdmaController');
+Route::post('cdma/list','UploadController@cdma');
+
+/*Route::resource('mobile','MobileController');
+Route::post('upload/mobile','UploadController@mobile');
+*/
+Route::resource('employee','EmployeeController');
+Route::post('upload/employee','UploadController@employee');
