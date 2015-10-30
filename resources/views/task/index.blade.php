@@ -26,59 +26,73 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="form-group has-warning">
+                            <div class="form-group ">
                                 <label for="" class="col-sm-2 control-label">任务名称</label>
 
                                 <div class="col-xs-4">
-                                    <input type="text" name="name" value="">
+                                    <input type="text" name="name" value="" class="form-control">
                                 </div>
                                 <label for="" class="col-sm-2 control-label">申请人</label>
 
                                 <div class="col-xs-4">
-                                    <input type="text" name="applicant" value="">
+                                    <input type="text" name="applicant" value="" class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group has-warning">
+                            <div class="form-group ">
                                 <label for="" class="col-sm-2 control-label">公司</label>
 
                                 <div class="col-xs-4">
-                                   {!! Form::select('company_id',App\Company::lists('name','id')) !!}
+                                   {!! Form::select('company_id',App\Company::lists('name','id'),null,['class'=>'form-control']) !!}
                                 </div>
                                 <label for="" class="col-sm-2 control-label">成本中心</label>
 
                                 <div class="col-xs-4">
-                                    <input type="text" name="costcent" value="">
+                                    <input type="text" name="costcent" value="" class="form-control">
                                 </div>
                             </div>
 
-                            <div class="form-group has-warning">
+                            <div class="form-group ">
                                 <label for="" class="col-sm-2 control-label">SNC号码</label>
 
                                 <div class="col-xs-4">
-                                    <input type="text" name="task_no" value="">
+                                    <input type="text" name="task_no" value="" class="form-control">
                                 </div><label for="" class="col-sm-2 control-label">分类</label>
 
                                 <div class="col-xs-4">
-                                    {!! Form::select('category_id',App\TaskCategory::lists('name','id')) !!}
+                                    {!! Form::select('category_id',App\TaskCategory::lists('name','id'),null,['class'=>'form-control']) !!}
                                 </div>
+
+
+                        </div>
+
+                            <div class="form-group ">
+                               <label for="" class="col-sm-2 control-label">Subject</label>
+                               <div class="col-xs-10">
+                                  <input type="text" name="subject" value="" class="form-control">
+                               </div>
+                            </div>
+
+
+
+                            <div class="form-group ">
+                               <label for="" class="col-sm-2 control-label">Reason</label>
+                               <div class="col-xs-10">
+                                  <input type="text" name="reason" value="" class="form-control">
+                               </div>
                             </div>
 
                             <div class="form-group has-warning">
-                                <label for="" class="col-sm-2 control-label"></label>
-
-                                <div class="col-xs-4">
-                                    <input type="text" name="snc" value="">
-                                </div>
-                                <label for="" class="col-sm-2 control-label">状态</label>
-
-                                <div class="col-xs-4">
-                                   {!! Form::file('attachment') !!}
-                                </div>
-
-
+                               <label for="" class="col-sm-2 control-label">Attachment</label>
+                               <div class="col-xs-4">
+                                  {!! Form::file('attachment',['class'=>'form-control']) !!}
+                               </div>
                             </div>
 
-                        </div>
+
+                                                        </div>
+                            
+                         </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
