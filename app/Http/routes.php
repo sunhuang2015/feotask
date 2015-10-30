@@ -40,3 +40,5 @@ Route::post('upload/mobile','UploadController@mobile');
 */
 Route::resource('employee','EmployeeController');
 Route::post('upload/employee','UploadController@employee');
+
+Route::resource('task','TaskController');

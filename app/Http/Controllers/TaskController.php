@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Task;
 
 class TaskController extends Controller
 {
@@ -16,6 +17,11 @@ class TaskController extends Controller
     public function index()
     {
         //
+
+        $tasks=Task::orderBy('created_at','DESC')->get();
+
+        return view('task.index',compact('tasks'));
+
     }
 
     /**
