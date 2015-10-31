@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->integer('status_id')->unsigned();
             $table->integer('company_id')->unsigned();
             $table->string('applicant')->index();
+            $table->string('phonenumber')->index();
             $table->string('costcent')->index();
             $table->string('task_no');
             $table->string('subject');

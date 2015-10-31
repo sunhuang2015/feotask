@@ -30,7 +30,8 @@ class Task extends Model
         'applicant',
         'reason',
         'task_no',
-        'remark'
+        'remark'.
+        'phonenuber'
     ];
 
     public function company(){

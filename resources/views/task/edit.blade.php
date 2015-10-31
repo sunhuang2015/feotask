@@ -1,8 +1,8 @@
 @extends('tpl.master')
 
 @section('content')
-    {!! Form::model($cdma,array(
-          'route'=>['cdma.apply.update',$cdma->id],
+    {!! Form::model($task,array(
+          'route'=>['task.update',$task->id],
           'class'=>'form form-horizontal',
           'method'=>'put'
           )
@@ -14,39 +14,27 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group has-warning">
-                            <label for="" class="col-sm-2 control-label">姓名</label>
+                            <label for="" class="col-sm-2 control-label">任务名称</label>
 
                             <div class="col-xs-4">
-                                <input type="text" name="employee_name" value="{{$cdma->employee_name}}">
+                                <input type="text" name="name" value="{{$task->name}}">
                             </div>
-                            <label for="" class="col-sm-2 control-label">工号</label>
+                            <label for="" class="col-sm-2 control-label">申请人</label>
 
                             <div class="col-xs-4">
-                                <input type="text" name="employee_number" value="{{$cdma->employee_number}}">
+                                <input type="text" name="applicant" value="{{$task->applicant}}">
                             </div>
                         </div>
                         <div class="form-group has-warning">
                             <label for="" class="col-sm-2 control-label">公司</label>
 
                             <div class="col-xs-4">
-                                {!! Form::select('company_id',App\Company::lists('name','id'),$cdma->company_id) !!}
+                                {!! Form::select('company_id',App\Company::lists('name','id'),$task->company_id) !!}
                             </div>
-                            <label for="" class="col-sm-2 control-label">部门</label>
+                            <label for="" class="col-sm-2 control-label">成本中心</label>
 
                             <div class="col-xs-4">
-                                <input type="text" name="department_name" value="{{$cdma->department_name}}">
-                            </div>
-                        </div>
-
-                        <div class="form-group has-warning">
-                            <label for="" class="col-sm-2 control-label">邮件</label>
-
-                            <div class="col-xs-4">
-                                <input type="text" name="employee_email" value="{{$cdma->email}}">
-                            </div><label for="" class="col-sm-2 control-label">身份证</label>
-
-                            <div class="col-xs-4">
-                                <input type="text" name="cid" value="{{$cdma->cid}}">
+                                <input type="text" name="costcent" value="{{$task->costcent}}">
                             </div>
                         </div>
 
@@ -54,8 +42,14 @@
                             <label for="" class="col-sm-2 control-label">SNC</label>
 
                             <div class="col-xs-4">
-                                <input type="text" name="snc" value="{{$cdma->snc}}">
-                            </div>
+                                <input type="text" name="task_no" value="{{$task->task_no}}">
+                            </div><label for="" class="col-sm-2 control-label">身份证</label>
+
+
+                        </div>
+
+                        <div class="form-group has-warning">
+
                             <label for="" class="col-sm-2 control-label">附件</label>
 
                             <div class="col-xs-4">
@@ -66,7 +60,7 @@
                         <div class="form-group has-warning">
                             <label for="" class="col-sm-2 control-label">状态</label>
                             <div class="col-xs-4">
-                                {!!  Form::select('cdma_status_id',App\CdmaStatus::where("id",'>',$cdma->cdma_status_id)->lists('name','id'))!!}
+                                {!!  Form::select('task_status_id',App\TaskStatus::where("id",'>',$task->status_id)->lists('name','id'))!!}
                             </div>
                             <label for="" class="col-sm-2 control-label">电话号码</label>
                             <div class="col-xs-4">
@@ -105,7 +99,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <form method="POST" action="/cdma/apply/{{$cdma->id}}">
+                    <form method="POST" action="/task/apply/{{$task->id}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="button" class="btn btn-default"

@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-          <a href="#task_new_model" role="button" class=" green btn btn-default" data-toggle="modal">New</a>
+            <a href="#task_new_model" role="button" class=" green btn btn-default" data-toggle="modal">New</a>
 
         </div>
     </div>
@@ -41,45 +41,55 @@
                             <div class="form-group ">
                                 <label for="" class="col-sm-2 control-label">公司</label>
 
-                                <div class="col-xs-4">
-                                   {!! Form::select('company_id',App\Company::lists('name','id'),null,['class'=>'form-control']) !!}
+                                <div class="col-xs-2">
+                                    {!! Form::select('company_id',App\Company::lists('name','id'),null,['class'=>'form-control']) !!}
                                 </div>
                                 <label for="" class="col-sm-2 control-label">成本中心</label>
 
-                                <div class="col-xs-4">
+                                <div class="col-xs-2">
                                     <input type="text" name="costcent" value="" class="form-control">
                                 </div>
+                             <div class="form-group ">
+                                 <label for="" class="col-sm-2 control-label">Phonenumber</label>
+                                 <div class="col-xs-2">
+                                     {!! Form::text('phonenumber','',['class'=>'form-control']) !!}
+                                 </div>
+                             </div>
                             </div>
                             <div class="form-group ">
                                 <label for="" class="col-sm-2 control-label">SNC号码</label>
 
                                 <div class="col-xs-4">
                                     <input type="text" name="task_no" value="" class="form-control">
-                                </div><label for="" class="col-sm-2 control-label">分类</label>
+                                </div>
+                                <label for="" class="col-sm-2 control-label">分类</label>
 
                                 <div class="col-xs-4">
                                     {!! Form::select('category_id',App\TaskCategory::lists('name','id'),null,['class'=>'form-control']) !!}
                                 </div>
 
 
-                        </div>
-                            <div class="form-group ">
-                               <label for="" class="col-sm-2 control-label">Subject</label>
-                               <div class="col-xs-10">
-                                  <input type="text" name="subject" value="" class="form-control">
-                               </div>
                             </div>
                             <div class="form-group ">
-                               <label for="" class="col-sm-2 control-label">Reason</label>
-                               <div class="col-xs-10">
-                                  <input type="text" name="reason" value="" class="form-control">
-                               </div>
+                                <label for="" class="col-sm-2 control-label">Subject</label>
+
+                                <div class="col-xs-10">
+                                    <input type="text" name="subject" value="" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group ">
-                               <label for="" class="col-sm-2 control-label">Attachment</label>
-                               <div class="col-xs-4">
-                                  {!! Form::file('attachment',['class'=>'form-control']) !!}
-                               </div>
+                                <label for="" class="col-sm-2 control-label">Reason</label>
+
+                                <div class="col-xs-10">
+                                    <input type="text" name="reason" value="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="" class="col-sm-2 control-label">Attachment</label>
+
+                                <div class="col-xs-4">
+                                    {!! Form::file('attachment',['class'=>'form-control']) !!}
+                                </div>
                             </div>
                         </div>
 
@@ -111,51 +121,52 @@
                 </thead>
                 <tbody>
 
-                    @foreach($tasks as $task)
-                     <tr>
+                @foreach($tasks as $task)
+                    <tr>
 
-                         <td>{{$task->name}}</td>
-                         <td>{{$task->subject}}</td>
-                         <td>{{$task->company->name}}</td>
-                         <td>{{$task->costcent}}</td>
-                         <td>{{$task->created_at}}</td>
-                         <td>{{$task->step->name}}</td>
-                         <td>
-                        <div class="hidden-sm hidden-xs btn-group">
-                            <button class="btn btn-xs btn-success">
-                                <a href="/task/{{$task->id}}/edit"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
-                            </button>
+                        <td>{{$task->name}}</td>
+                        <td>{{$task->subject}}</td>
+                        <td>{{$task->company->name}}</td>
+                        <td>{{$task->costcent}}</td>
+                        <td>{{$task->created_at}}</td>
+                        <td>{{$task->step->name}}</td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
 
-
-                        </div>
-
-                        <div class="hidden-md hidden-lg">
-                            <div class="inline pos-rel">
-
-                                <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        data-position="auto">
-                                    <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                </button>
-
-                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                <a href="/task/{{$task->id}}/edit" class="button btn btn-xs btn-success"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
 
 
-                                    <li>
-                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+
+                            </div>
+
+                            <div class="hidden-md hidden-lg">
+                                <div class="inline pos-rel">
+
+                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"
+                                            data-position="auto">
+                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                    </button>
+
+                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+
+
+                                        <li>
+                                            <a href="#" class="tooltip-success" data-rel="tooltip" title=""
+                                               data-original-title="Edit">
                                             <span class="green">
 
                                             </span>
-                                        </a>
-                                    </li>
+                                            </a>
+                                        </li>
 
 
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
-                    @endforeach
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -165,43 +176,43 @@
 
 @section('script')
     <script>
-         jQuery(function($){
-                     //initiate dataTables plugin
-                     var oTable1 =
-                             $('#task_apply_table')
-                                 //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                     .dataTable( {
-                                         bAutoWidth: false,
-                                         "aoColumns": [
-                                             { "bSortable": false },
-                                             null, null,null, null, null,
-                                             { "bSortable": false }
-                                         ],
-                                         "aaSorting": [],
+        jQuery(function ($) {
+            //initiate dataTables plugin
+            var oTable1 =
+                    $('#task_apply_table')
+                        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+                            .dataTable({
+                                bAutoWidth: false,
+                                "aoColumns": [
+                                    {"bSortable": false},
+                                    null, null, null, null, null,
+                                    {"bSortable": false}
+                                ],
+                                "aaSorting": [],
 
-                                         //,
-                                         //"sScrollY": "200px",
-                                         //"bPaginate": false,
+                                //,
+                                //"sScrollY": "200px",
+                                //"bPaginate": false,
 
-                                         //"sScrollX": "100%",
-                                         //"sScrollXInner": "120%",
-                                         //"bScrollCollapse": true,
-                                         //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                         //you may want to wrap the table inside a "div.dataTables_borderWrap" element
+                                //"sScrollX": "100%",
+                                //"sScrollXInner": "120%",
+                                //"bScrollCollapse": true,
+                                //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+                                //you may want to wrap the table inside a "div.dataTables_borderWrap" element
 
-                                         //"iDisplayLength": 50
-                                     } );
-                     //oTable1.fnAdjustColumnSizing();
+                                //"iDisplayLength": 50
+                            });
+            //oTable1.fnAdjustColumnSizing();
 
 
-                     //TableTools settings
-                     TableTools.classes.container = "btn-group btn-overlap";
-                     TableTools.classes.print = {
-                         "body": "DTTT_Print",
-                         "info": "tableTools-alert gritter-item-wrapper gritter-info gritter-center white",
-                         "message": "tableTools-print-navbar"
-                     }
+            //TableTools settings
+            TableTools.classes.container = "btn-group btn-overlap";
+            TableTools.classes.print = {
+                "body": "DTTT_Print",
+                "info": "tableTools-alert gritter-item-wrapper gritter-info gritter-center white",
+                "message": "tableTools-print-navbar"
+            }
 
-                 });
+        });
     </script>
 @endsection
