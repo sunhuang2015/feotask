@@ -18,7 +18,7 @@
                         <div class="form-group has-warning">
                            <label for="" class="col-sm-2 control-label">TaskStep</label>
                            <div class="col-xs-4">
-                              {!! Form::select('step_id',App\TaskStep::where('order','>',$order)->orderBy('order')->lists('name','id'), ['class'=>'form-control']) !!}
+                              {!! Form::select('step_id',App\TaskStep::where('order','>',$task->step->order)->orderBy('order')->lists('name','id'), ['class'=>'form-control']) !!}
                            </div>
                         </div>
                      <div class="form-group">

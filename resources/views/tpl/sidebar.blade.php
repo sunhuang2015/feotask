@@ -226,6 +226,14 @@
 
                     <b class="arrow"></b>
                 </li>
+                <li class="">
+                    <a href="/material">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        物料编码
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
 
 
             </ul>

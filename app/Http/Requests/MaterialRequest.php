@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class TaskLogRequest extends Request
+class MaterialRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class TaskLogRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,7 +25,6 @@ class TaskLogRequest extends Request
     {
         return [
             //
-            'task_id'=>'unique_with:task_logs, step_id'
         ];
     }
 }

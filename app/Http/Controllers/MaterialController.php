@@ -2,33 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\TaskLog;
-use App\TaskStep;
+use App\Material;
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Task;
-use Carbon\Carbon;
-class TaskLogController extends Controller
+
+class MaterialController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         //
-        $task=Task::find($id);
-        $order=$task->step->order;
-
-      if($order<8){
-           return view('tasklog.edit',compact('task'));
-       }else
-       {
-           return redirect()->to('task')->with('message','此单已经完成，不需要操作了');
-       }
-
+        $materials=Material::orderBy('code')->get();
+        return view('material.index',compact('materials'));
     }
 
     /**
@@ -47,30 +38,12 @@ class TaskLogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\TaskLogRequest $request)
+    public function store(Request $request)
     {
         //
-        $data=$request->except(['_token','attachment']);
-        if($request->hasFile('attachment')) {
-            $data = $request->except(['_token', 'attachment']);
-            $date = Carbon::now()->format("Y_m_d");
-            $path = base_path() . "/up/" . "TASK/" . $date . "/";
-            $ext = $request->file('attachment')->getClientOriginalExtension();
-            $extmine = $request->file('attachment')->getClientMimeType();
-            $request->file('attachment')->move($path, Carbon::now()->timestamp . "." . $ext);
-            $filename = $path . Carbon::now()->timestamp . "." . $ext;
-
-
-            $data['attachment'] = $filename;
-        }
-        $data['company_id']=Task::find($request->get('task_id'))->company->id;
-
-        $tasklog=TaskLog::create($data);
-
-        $task=$tasklog->task->update(['step_id'=>$data['step_id']]);
-        //$task=$tasklog->task;
-        // dd($task);
-        return redirect()->to('task');
+        $data=$request->except(['_token']);
+        Material::create($data);
+        return redirect()->to('material');
     }
 
     /**

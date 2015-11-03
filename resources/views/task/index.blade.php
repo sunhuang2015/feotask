@@ -119,6 +119,7 @@
                     <th>申请时间</th>
                     <th>流程</th>
                     <th>细节</th>
+                    <th>采购表</th>
                     <th>更新</th>
                     <th>修改</th>
                 </tr>
@@ -128,15 +129,16 @@
                 @foreach($tasks as $task)
                     <tr>
 
-                        <td>{{$task->name}}</td>
-                        <td>{{$task->subject}}</td>
-                        <td>{{$task->company->name}}</td>
+                        <td>{{str_limit($task->name,40)}}</td>
+                        <td>{{str_limit($task->subject,40)}}</td>
+                        <td>{{str_limit($task->company->name,40)}}</td>
                         <td>{{$task->costcent}}</td>
                         <td>{{$task->created_at}}</td>
                         <td>{{$task->step->name}}</td>
                         <td><a href="/task/{{$task->id}}">
 
                             ...</a></td>
+                        <td><a href="/task/devices/{{$task->id}}">采购单</a></td>
                         <td><a href="/task/update/{{$task->id}}" class="btn btn-danger btn-xs">更新</a></td>
                         <td>
                             <div class="hidden-sm hidden-xs btn-group">

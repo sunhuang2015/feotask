@@ -45,3 +45,5 @@ Route::resource('task', 'TaskController');
 Route::get('task/update/{id}','TasklogController@index');
 Route::post('tasklog','TasklogController@store');
 
+Route::resource('material','MaterialController');
+
