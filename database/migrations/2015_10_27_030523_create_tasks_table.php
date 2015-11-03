@@ -26,6 +26,7 @@ class CreateTasksTable extends Migration
             $table->string('subject');
             $table->string('reason');
             $table->text('remark')->nullable();
+            $table->string('attachment');
 
             $table->softDeletes();
             $table->timestamps();

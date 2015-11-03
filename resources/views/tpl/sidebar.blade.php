@@ -218,6 +218,14 @@
 
                     <b class="arrow"></b>
                 </li>
+                <li class="">
+                    <a href="/supplier">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        供应商
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
 
 
             </ul>

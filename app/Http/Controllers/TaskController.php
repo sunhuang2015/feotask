@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Task;
 use Carbon\Carbon;
+use Dflydev\ApacheMimeTypes\PhpRepository;
+use App\TaskLog;
 class TaskController extends Controller
 {
     /**
@@ -14,6 +16,8 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $mimeDetect;
     public function index()
     {
         //
@@ -48,14 +52,23 @@ class TaskController extends Controller
             $date=Carbon::now()->format("Y_m_d");
             $path=base_path()."/up/"."TASK/".$date."/";
             $ext=$request->file('attachment')->getClientOriginalExtension();
+            $extmine=$request->file('attachment')->getClientMimeType();
             $request->file('attachment')->move($path,Carbon::now()->timestamp.".".$ext);
             $filename=$path.Carbon::now()->timestamp.".".$ext;
+
+
             $data['attachment']=$filename;
             $data['step_id']=1;
             $data['status_id']=1;
-            //dd($data);
+
             $task=Task::create($data);
 
+            $tasklog['step_id']=1;
+            $tasklog['task_id']=$task->id;
+            $tasklog['company_id']=$task->company_id;
+            $tasklog['task_file']=$task->attachment;
+            $tasklog['remark']="发起";
+            TaskLog::create($tasklog);
             return back();
 
         }
@@ -72,6 +85,8 @@ class TaskController extends Controller
     public function show($id)
     {
         //
+        $task=Task::find($id);
+        return view('task.show',compact('task'));
     }
 
     /**

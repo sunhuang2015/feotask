@@ -15,7 +15,7 @@ class ModiftTaskLogTable extends Migration
         Schema::table('task_logs', function (Blueprint $table) {
             //
             $table->integer('supplier_id')->unsigned();
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+           // $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
         });
     }
 
@@ -28,7 +28,7 @@ class ModiftTaskLogTable extends Migration
     {
         Schema::table('task_logs', function (Blueprint $table) {
             //
-            $table->dropForeign('task_logs_supplier_id_foreign');
+            //$table->dropForeign('task_logs_supplier_id_foreign');
             $table->dropColumn(['supplier_id']);
         });
     }

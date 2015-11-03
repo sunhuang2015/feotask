@@ -29,32 +29,34 @@
                             <div class="form-group ">
                                 <label for="" class="col-sm-2 control-label">任务名称</label>
 
-                                <div class="col-xs-4">
+                                <div class="col-xs-10">
                                     <input type="text" name="name" value="" class="form-control">
                                 </div>
+
+                            </div>
+                            <div class="form-group has-warning">
                                 <label for="" class="col-sm-2 control-label">申请人</label>
 
                                 <div class="col-xs-4">
                                     <input type="text" name="applicant" value="" class="form-control">
                                 </div>
+                                <label for="" class="col-sm-2 control-label">电话</label>
+                                <div class="col-xs-4">
+                                    {!! Form::text('phonenumber','',['class'=>'form-control']) !!}
+                                </div>
                             </div>
                             <div class="form-group ">
                                 <label for="" class="col-sm-2 control-label">公司</label>
 
-                                <div class="col-xs-2">
+                                <div class="col-xs-4">
                                     {!! Form::select('company_id',App\Company::lists('name','id'),null,['class'=>'form-control']) !!}
                                 </div>
                                 <label for="" class="col-sm-2 control-label">成本中心</label>
 
-                                <div class="col-xs-2">
+                                <div class="col-xs-4">
                                     <input type="text" name="costcent" value="" class="form-control">
                                 </div>
-                             <div class="form-group ">
-                                 <label for="" class="col-sm-2 control-label">Phonenumber</label>
-                                 <div class="col-xs-2">
-                                     {!! Form::text('phonenumber','',['class'=>'form-control']) !!}
-                                 </div>
-                             </div>
+
                             </div>
                             <div class="form-group ">
                                 <label for="" class="col-sm-2 control-label">SNC号码</label>
@@ -71,21 +73,21 @@
 
                             </div>
                             <div class="form-group ">
-                                <label for="" class="col-sm-2 control-label">Subject</label>
+                                <label for="" class="col-sm-2 control-label">标题</label>
 
                                 <div class="col-xs-10">
                                     <input type="text" name="subject" value="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="" class="col-sm-2 control-label">Reason</label>
+                                <label for="" class="col-sm-2 control-label">原因</label>
 
                                 <div class="col-xs-10">
                                     <input type="text" name="reason" value="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="" class="col-sm-2 control-label">Attachment</label>
+                                <label for="" class="col-sm-2 control-label">上传附件</label>
 
                                 <div class="col-xs-4">
                                     {!! Form::file('attachment',['class'=>'form-control']) !!}
@@ -96,7 +98,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="submit" class="btn btn-primary">存盘</button>
                 </div>
                 {!! Form::close() !!}
@@ -115,8 +117,10 @@
                     <th>公司</th>
                     <th>成本中心</th>
                     <th>申请时间</th>
-                    <th>状态</th>
-                    <th>{{config('site.action')}}</th>
+                    <th>流程</th>
+                    <th>细节</th>
+                    <th>更新</th>
+                    <th>修改</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -130,6 +134,10 @@
                         <td>{{$task->costcent}}</td>
                         <td>{{$task->created_at}}</td>
                         <td>{{$task->step->name}}</td>
+                        <td><a href="/task/{{$task->id}}">
+
+                            ...</a></td>
+                        <td><a href="/task/update/{{$task->id}}" class="btn btn-danger btn-xs">更新</a></td>
                         <td>
                             <div class="hidden-sm hidden-xs btn-group">
 

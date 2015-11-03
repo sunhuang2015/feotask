@@ -31,14 +31,18 @@ class Task extends Model
         'reason',
         'task_no',
         'remark'.
-        'phonenuber'
+        'phonenumber',
+        'attachment'
     ];
 
     public function company(){
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo(Company::class);
     }
 
     public function step(){
-        return $this->belongsTo('App\TaskStep');
+        return $this->belongsTo(TaskStep::class);
+    }
+    public function tasklog(){
+        return $this->hasMany(TaskLog::class);
     }
 }

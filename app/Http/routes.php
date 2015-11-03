@@ -42,3 +42,6 @@ Route::resource('employee', 'EmployeeController');
 Route::post('upload/employee', 'UploadController@employee');
 
 Route::resource('task', 'TaskController');
+Route::get('task/update/{id}','TasklogController@index');
+Route::post('tasklog','TasklogController@store');
+

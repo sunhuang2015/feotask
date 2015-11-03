@@ -21,8 +21,6 @@ class CompanyTableSeeder extends Seeder
                      ['name'=>'B5'],
                      ['name'=>'CROP'],
                      ['name'=>'Other'],
-
-
                  ]);
     }
 }
