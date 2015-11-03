@@ -38,7 +38,7 @@ class MaterialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\MaterialRequest $request)
     {
         //
         $data=$request->except(['_token']);

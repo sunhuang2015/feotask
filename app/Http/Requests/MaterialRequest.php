@@ -13,7 +13,7 @@ class MaterialRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,12 @@ class MaterialRequest extends Request
     {
         return [
             //
+            "code"=>"required|unique:materials",
+            'c_name'=>"required",
+            'e_name'=>"required",
+            'brand'=>"required",
+            'unit'=>"required",
+            'model'=>"required",
         ];
     }
 }

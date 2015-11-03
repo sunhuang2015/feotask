@@ -47,3 +47,5 @@ Route::post('tasklog','TasklogController@store');
 
 Route::resource('material','MaterialController');
 
+Route::resource('supplier','SupplierController');
+

@@ -13,7 +13,7 @@ class SupplierRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,10 @@ class SupplierRequest extends Request
     {
         return [
             //
+            'name'=>'required|unique:suppliers',
+            'contact_person'=>'required',
+            'phone'=>'required',
+            'email'=>'required'
         ];
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Supplier;
 class SupplierController extends Controller
 {
     /**
@@ -16,6 +16,8 @@ class SupplierController extends Controller
     public function index()
     {
         //
+        $suppliers=Supplier::orderBy('name','desc')->get();
+        return view('supplier.index',compact('suppliers'));
     }
 
     /**
@@ -34,9 +36,12 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\SupplierRequest $request)
     {
         //
+        $data=$request->except(['_token']);
+        Supplier::create($data);
+        return redirect()->to('supplier');
     }
 
     /**
